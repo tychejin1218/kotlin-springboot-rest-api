@@ -21,6 +21,15 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+  // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor
+  implementation("org.springframework.boot:spring-boot-configuration-processor:2.7.3")
+
+  // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+  implementation("mysql:mysql-connector-java:8.0.30")
+
+  // https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
+  implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
 }
 
 tasks.withType<KotlinCompile> {
