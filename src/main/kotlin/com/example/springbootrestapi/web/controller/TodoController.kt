@@ -8,6 +8,6 @@ class TodoController {
 
   @GetMapping("/api/todo")
   fun getTodo(): String {
-    return "todo."
+    return "todo"
   }
 }
