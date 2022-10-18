@@ -3,6 +3,7 @@ package com.example.springbootrestapi.web.controller
 import com.example.springbootrestapi.domain.TodoRequest
 import com.example.springbootrestapi.domain.TodoResponse
 import com.example.springbootrestapi.service.TodoService
+import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse
 class TodoController(
   val todoService: TodoService
 ) {
+
+  private val log = LoggerFactory.getLogger(javaClass)
 
   /**
    * To-Do 조회
@@ -28,6 +31,7 @@ class TodoController(
     response: HttpServletResponse,
     @RequestBody todoRequest: TodoRequest
   ): MutableList<TodoResponse> {
+    log.info("todoRequest:[{}]", todoRequest.toString())
     return todoService.getTodos(todoRequest)
   }
 }
