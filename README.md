@@ -10,4 +10,4 @@
 
 - #### 개발 설명
   - ##### [Spring Boot] Kotlin으로 REST API 만들기(1) - 프로젝트 생성
-  	- ###### https://tychejin.tistory.com
+    - ###### https://tychejin.tistory.com/403
