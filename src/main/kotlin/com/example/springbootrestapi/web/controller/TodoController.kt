@@ -18,11 +18,7 @@ class TodoController(
   /**
    * To-Do 조회
    */
-  @PostMapping(
-    value = ["/api/todos"],
-    consumes = [MediaType.APPLICATION_JSON_VALUE],
-    produces = [MediaType.APPLICATION_JSON_VALUE]
-  )
+  @PostMapping("/api/todos")
   fun getTodos(
     request: HttpServletRequest,
     response: HttpServletResponse,
