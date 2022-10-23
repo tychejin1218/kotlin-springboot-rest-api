@@ -1,9 +1,9 @@
-# server ??
+# server 설정
 server:
   port: 9091
 
 ---
-# datasource ??
+# datasource 설정
 spring:
   datasource:
     hikari:
