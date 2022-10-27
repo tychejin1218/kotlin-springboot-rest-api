@@ -18,5 +18,5 @@ spring:
   profiles:
     active: local
     group:
-      local: logging-type-condole, logging-level-local
+      local: logging-type-console, logging-level-local
       dev: logging-type-file, logging-level-dev
