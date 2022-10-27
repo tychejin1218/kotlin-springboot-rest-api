@@ -16,7 +16,7 @@ class TodoController(
   val todoService: TodoService
 ) {
 
-  private val log = LoggerFactory.getLogger(javaClass)
+  private val log = LoggerFactory.getLogger(TodoController::class.java)
 
   /**
    * To-Do 조회
