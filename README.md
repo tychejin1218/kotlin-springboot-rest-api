@@ -13,3 +13,5 @@
     - ###### https://tychejin.tistory.com/403
   - ##### [Spring Boot] Kotlin으로 REST API 만들기(2) - MySQL + MyBatis 연동
     - ###### https://tychejin.tistory.com/404
+  - ##### [Spring Boot] Kotlin으로 REST API 만들기(3) - Logback 설정
+    - ###### https://tychejin.tistory.com/405
