@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <!-- log file path -->
+  <property name="LOG_PATH" value="logs" />
+  <!-- log file name -->
+  <property name="LOG_FILE_NAME" value="springboot_rest_api" />
+  <!-- pattern -->
+  <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] [%-5level] %logger{36} - %msg%n" />
+
+  <!-- Profile 별로 로그 타입을 설정 -->
+  <springProfile name="logging-type-console">
+    <appender name="PROFILE-APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <pattern>${LOG_PATTERN}</pattern>
+      </encoder>
+    </appender>
+  </springProfile>
+  <springProfile name="logging-type-file">
+    <appender name="PROFILE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <!-- 파일경로 설정 -->
+      <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+
+      <!-- 출력패턴 설정 -->
+      <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <pattern>${LOG_PATTERN}</pattern>
+      </encoder>
+
+      <!-- Rolling 정책 -->
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
+        <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+        <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+          <!-- 파일당 최고 용량 kb, mb, gb -->
+          <maxFileSize>10MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+
+        <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거 -->
+        <maxHistory>30</maxHistory>
+        <!--<MinIndex>1</MinIndex>
+        <MaxIndex>10</MaxIndex> -->
+      </rollingPolicy>
+    </appender>
+  </springProfile>
+
+  <!-- Profile 별로 로그 레벨을 설정 -->
+  <springProfile name="logging-level-local">
+    <!--특정 패키지 로그 레벨 설정-->
+    <property name="LOG_LEVEL_root" value="DEBUG"/>
+    <property name="LOG_LEVEL_com.example.springbootrestapi" value="DEBUG"/>
+    <property name="LOG_LEVEL_com.zaxxer.hikari" value="DEBUG"/>
+  </springProfile>
+  <springProfile name="logging-level-dev">
+    <property name="LOG_LEVEL_root" value="INFO"/>
+    <property name="LOG_LEVEL_com.example.springbootrestapi" value="INFO"/>
+    <property name="LOG_LEVEL_com.zaxxer.hikari" value="INFO"/>
+  </springProfile>
+
+  <!-- com.example.springbootrestapi -->
+  <logger name="com.example.springbootrestapi"
+    level="${LOG_LEVEL_com.example.springbootrestapi}"
+    additivity="false">
+    <appender-ref ref="PROFILE-APPENDER"/>
+  </logger>
+  <!-- hikari -->
+  <logger name="com.zaxxer.hikari"
+    level="${LOG_LEVEL_com.zaxxer.hikari}"
+    additivity="false">
+    <appender-ref ref="PROFILE-APPENDER"/>
+  </logger>
+
+  <!-- 로그 레벨 설정 -->
+  <root level="${LOG_LEVEL_root}">
+    <appender-ref ref="PROFILE-APPENDER" />
+  </root>
+
+</configuration>

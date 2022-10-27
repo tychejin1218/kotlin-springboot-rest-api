@@ -11,3 +11,12 @@ spring:
       jdbc-url: jdbc:mysql://localhost:3306/sample?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
       username: sample
       password: password1!
+
+---
+# profiles 설정
+spring:
+  profiles:
+    active: local
+    group:
+      local: logging-type-condole, logging-level-local
+      dev: logging-type-file, logging-level-dev
