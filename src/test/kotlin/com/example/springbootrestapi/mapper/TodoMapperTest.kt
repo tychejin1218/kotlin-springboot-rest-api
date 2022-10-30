@@ -48,11 +48,10 @@ class TodoMapperTest {
   fun testGetTodoById() {
 
     // Given
-    var insertId: Long =
-      insertTodo("Title Junit Test Insert 01", "Description Junit Test Insert 01", false)
+    var insertId = insertTodo("Title Junit Test Insert 01", "Description Junit Test Insert 01", false)
 
     // When
-    var todoResponse: TodoResponse = todoMapper.getTodoById(insertId)
+    var todoResponse = todoMapper.getTodoById(insertId)
 
     // Then
     Assertions.assertEquals(insertId, todoResponse.id)
@@ -64,7 +63,7 @@ class TodoMapperTest {
   fun testInsertTodo() {
 
     // Given
-    var todoRequest: TodoRequest = TodoRequest().apply {
+    var todoRequest = TodoRequest().apply {
       this.title = "Title Junit Test Insert"
       this.description = "Description Junit Test Insert"
       this.completed = false
@@ -75,7 +74,7 @@ class TodoMapperTest {
 
     // Then
     todoRequest.id?.let {
-      var todoResponse: TodoResponse = todoMapper.getTodoById(it)
+      var todoResponse = todoMapper.getTodoById(it)
       Assertions.assertEquals(todoRequest.title, todoResponse.title)
       Assertions.assertEquals(todoRequest.description, todoResponse.description)
       Assertions.assertEquals(todoRequest.completed, todoResponse.completed)
@@ -90,7 +89,7 @@ class TodoMapperTest {
     // Given
     val insertId = insertTodo("Title Junit Test Insert", "Description Junit Test Insert", false)
 
-    val todoRequest: TodoRequest = TodoRequest().apply {
+    val todoRequest = TodoRequest().apply {
       this.id = insertId
       this.title = "Title Junit Test Update"
       this.description = "Description Junit Test Update"
@@ -102,7 +101,7 @@ class TodoMapperTest {
 
     // Then
     todoRequest.id?.let {
-      var todoResponse: TodoResponse = todoMapper.getTodoById(it)
+      var todoResponse = todoMapper.getTodoById(it)
       Assertions.assertEquals(todoRequest.title, todoResponse.title)
       Assertions.assertEquals(todoRequest.description, todoResponse.description)
       Assertions.assertEquals(todoRequest.completed, todoResponse.completed)
@@ -122,7 +121,7 @@ class TodoMapperTest {
     todoMapper.deleteTodoById(insertId)
 
     // Then
-    val todoResponse: TodoResponse = todoMapper.getTodoById(insertId)
+    val todoResponse = todoMapper.getTodoById(insertId)
     Assertions.assertNull(todoResponse)
   }
 
