@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest
 @ActiveProfiles("local")
-internal class TodoServiceTest {
+class TodoServiceTest {
 
   @Autowired
   lateinit var todoService: TodoService
