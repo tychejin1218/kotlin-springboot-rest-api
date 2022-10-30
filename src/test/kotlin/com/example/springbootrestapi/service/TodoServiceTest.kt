@@ -51,13 +51,13 @@ class TodoServiceTest {
   fun testGetTodoById() {
 
     // Given
-    var title = "Title Junit Test Insert"
-    var description = "Description Junit Test Insert"
-    var completed = false
-    var insertId = insertTodo(title, description, completed)
+    val title = "Title Junit Test Insert"
+    val description = "Description Junit Test Insert"
+    val completed = false
+    val insertId = insertTodo(title, description, completed)
 
     // When
-    var todoResponse = todoService.getTodoById(insertId)
+    val todoResponse = todoService.getTodoById(insertId)
 
     // Then
     assertEquals(title, todoResponse.title)
@@ -92,7 +92,7 @@ class TodoServiceTest {
   fun testUpdateTodo() {
 
     // Given
-    var insertId = insertTodo("Title Junit Test Insert", "Description Junit Test Insert", false)
+    val insertId = insertTodo("Title Junit Test Insert", "Description Junit Test Insert", false)
 
     val todoRequest = TodoRequest().apply {
       this.id = insertId
@@ -131,7 +131,7 @@ class TodoServiceTest {
     completed: Boolean
   ): Long {
 
-    var todoRequest = TodoRequest().apply {
+    val todoRequest = TodoRequest().apply {
       this.title = title
       this.description = description
       this.completed = completed
