@@ -17,5 +17,3 @@
     - ###### https://tychejin.tistory.com/405
   - ##### [Spring Boot] Kotlin으로 REST API 만들기(4) - Log4jdbc 설정
     - ###### https://tychejin.tistory.com/406 
-  - ##### [Spring Boot] Kotlin으로 REST API 만들기(5) - Mapper 구현 및 단위 테스트(Junit5)
-    - ###### https://tychejin.tistory.com/407
