@@ -1,8 +1,9 @@
 package com.example.springbootrestapi.mapper
 
 import com.example.springbootrestapi.domain.TodoRequest
-import com.example.springbootrestapi.domain.TodoResponse
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -36,10 +37,10 @@ class TodoMapperTest {
     }
 
     // When
-    var todos: MutableList<TodoResponse> = todoMapper.getTodos(todoRequest)
+    var todos = todoMapper.getTodos(todoRequest)
 
     // Then
-    Assertions.assertTrue(!todos.isEmpty())
+    assertTrue(!todos.isEmpty())
   }
 
   @Transactional
@@ -54,7 +55,7 @@ class TodoMapperTest {
     var todoResponse = todoMapper.getTodoById(insertId)
 
     // Then
-    Assertions.assertEquals(insertId, todoResponse.id)
+    assertEquals(insertId, todoResponse.id)
   }
 
   @Transactional
@@ -114,8 +115,7 @@ class TodoMapperTest {
   fun testDeleteTodoById() {
 
     // Given
-    val insertId =
-      insertTodo("Title Junit Test Insert", "Description Junit Test Insert", false)
+    val insertId = insertTodo("Title Junit Test Insert", "Description Junit Test Insert", false)
 
     // When
     todoMapper.deleteTodoById(insertId)
