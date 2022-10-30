@@ -27,4 +27,55 @@
 
   </select>
 
+  <select id="getTodoById"
+    parameterType="long"
+    resultType="com.example.springbootrestapi.domain.TodoResponse">
+
+    SELECT *
+      FROM TODO
+     WHERE ID = #{id}
+
+  </select>
+
+  <insert id="insertTodo"
+    useGeneratedKeys="true"
+    keyProperty="id"
+    parameterType="com.example.springbootrestapi.domain.TodoRequest">
+
+    INSERT
+      INTO TODO
+         (
+              TITLE
+            , DESCRIPTION
+            , COMPLETED
+         )
+    VALUES
+         (
+              #{title}
+            , #{description}
+            , #{completed}
+         )
+
+  </insert>
+
+  <update id="updateTodo"
+    parameterType="com.example.springbootrestapi.domain.TodoRequest">
+
+    UPDATE TODO
+       SET TITLE = #{title}
+         , DESCRIPTION = #{description}
+         , COMPLETED = #{completed}
+     WHERE ID = #{id}
+
+  </update>
+
+  <delete id="deleteTodoById"
+    parameterType="long">
+
+    DELETE
+      FROM TODO
+     WHERE ID = #{id}
+
+  </delete>
+
 </mapper>
