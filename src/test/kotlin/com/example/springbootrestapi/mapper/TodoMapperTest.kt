@@ -30,14 +30,14 @@ class TodoMapperTest {
     insertTodo("Title Junit Test Insert 04", "Description Junit Test Insert 04", true)
     insertTodo("Title Junit Test Insert 05", "Description Junit Test Insert 05", false)
 
-    var todoRequest = TodoRequest().apply {
+    val todoRequest = TodoRequest().apply {
       this.title = "Title Junit Test Insert"
       this.description = "Description Junit Test Insert"
       this.completed = true
     }
 
     // When
-    var todos = todoMapper.getTodos(todoRequest)
+    val todos = todoMapper.getTodos(todoRequest)
 
     // Then
     assertTrue(!todos.isEmpty())
@@ -49,10 +49,10 @@ class TodoMapperTest {
   fun testGetTodoById() {
 
     // Given
-    var insertId = insertTodo("Title Junit Test Insert 01", "Description Junit Test Insert 01", false)
+    val insertId = insertTodo("Title Junit Test Insert 01", "Description Junit Test Insert 01", false)
 
     // When
-    var todoResponse = todoMapper.getTodoById(insertId)
+    val todoResponse = todoMapper.getTodoById(insertId)
 
     // Then
     assertEquals(insertId, todoResponse.id)
@@ -64,7 +64,7 @@ class TodoMapperTest {
   fun testInsertTodo() {
 
     // Given
-    var todoRequest = TodoRequest().apply {
+    val todoRequest = TodoRequest().apply {
       this.title = "Title Junit Test Insert"
       this.description = "Description Junit Test Insert"
       this.completed = false
@@ -75,10 +75,10 @@ class TodoMapperTest {
 
     // Then
     todoRequest.id?.let {
-      var todoResponse = todoMapper.getTodoById(it)
-      Assertions.assertEquals(todoRequest.title, todoResponse.title)
-      Assertions.assertEquals(todoRequest.description, todoResponse.description)
-      Assertions.assertEquals(todoRequest.completed, todoResponse.completed)
+      val todoResponse = todoMapper.getTodoById(it)
+      assertEquals(todoRequest.title, todoResponse.title)
+      assertEquals(todoRequest.description, todoResponse.description)
+      assertEquals(todoRequest.completed, todoResponse.completed)
     } ?: throw Exception()
   }
 
@@ -103,9 +103,9 @@ class TodoMapperTest {
     // Then
     todoRequest.id?.let {
       var todoResponse = todoMapper.getTodoById(it)
-      Assertions.assertEquals(todoRequest.title, todoResponse.title)
-      Assertions.assertEquals(todoRequest.description, todoResponse.description)
-      Assertions.assertEquals(todoRequest.completed, todoResponse.completed)
+      assertEquals(todoRequest.title, todoResponse.title)
+      assertEquals(todoRequest.description, todoResponse.description)
+      assertEquals(todoRequest.completed, todoResponse.completed)
     } ?: throw Exception()
   }
 
@@ -131,7 +131,7 @@ class TodoMapperTest {
     completed: Boolean
   ): Long {
 
-    var todoRequest = TodoRequest().apply {
+    val todoRequest = TodoRequest().apply {
       this.title = title
       this.description = description
       this.completed = completed
