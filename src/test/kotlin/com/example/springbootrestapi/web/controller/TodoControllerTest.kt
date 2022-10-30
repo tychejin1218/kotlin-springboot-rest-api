@@ -190,7 +190,7 @@ class TodoControllerTest {
     completed: Boolean
   ): Long {
 
-    var todoRequest = TodoRequest().apply {
+    val todoRequest = TodoRequest().apply {
       this.title = title
       this.description = description
       this.completed = completed
