@@ -25,3 +25,5 @@
     - ###### https://tychejin.tistory.com/409 
   - ##### [Spring Boot] Kotlin으로 REST API 만들기(8) - Interceptor 적용
     - ###### https://tychejin.tistory.com/410 
+  - ##### [Spring Boot] Kotlin으로 REST API 만들기(9) - Transaction 적용
+    - ###### https://tychejin.tistory.com/411 
