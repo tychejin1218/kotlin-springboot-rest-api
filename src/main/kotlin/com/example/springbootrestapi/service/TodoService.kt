@@ -4,6 +4,8 @@ import com.example.springbootrestapi.domain.TodoRequest
 import com.example.springbootrestapi.domain.TodoResponse
 import com.example.springbootrestapi.mapper.TodoMapper
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+
 
 @Service
 class TodoService(
@@ -60,5 +62,20 @@ class TodoService(
       todoResponse = todoMapper.getTodoById(id)
     }
     return todoResponse
+  }
+
+  /**
+   * To-Do 저장 시 title이 #으로 시작하는 경우 RuntimeException 발생
+   */
+  @Transactional
+  fun insertTodosFailed(todoRequests: List<TodoRequest>): Int {
+    var result = 0
+    for (todoRequest in todoRequests) {
+      if (todoRequest.title.startsWith("#")) {
+        throw RuntimeException("title이 #으로 시작")
+      }
+      result += todoMapper.insertTodo(todoRequest)
+    }
+    return result
   }
 }

@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
 
+
 @SpringBootTest
 @ActiveProfiles("local")
 class TodoServiceTest {
@@ -140,5 +141,46 @@ class TodoServiceTest {
     todoMapper.insertTodo(todoRequest)
 
     return todoRequest.id ?: 0
+  }
+
+  @DisplayName("insertTodosFailed_To-Do 저장 시 title이 #으로 시작하는 경우 RuntimeException 발생")
+  @Test
+  fun testInsertTodosFailed() {
+
+    // Given
+    val todoRequests = mutableListOf<TodoRequest>()
+    todoRequests.add(
+      TodoRequest().apply {
+        this.title = "Title Junit Test Insert 01"
+        this.description = "Description Junit Test Insert 01"
+        this.completed = false
+      }
+    )
+    todoRequests.add(
+      TodoRequest().apply {
+        this.title = "Title Junit Test Insert 02"
+        this.description = "Description Junit Test Insert 02"
+        this.completed = false
+      }
+    )
+
+    todoRequests.add(
+      TodoRequest().apply {
+        this.title = "#Title Junit Test Insert 03"
+        this.description = "Description Junit Test Insert 03"
+        this.completed = false
+      }
+    )
+
+    // When
+    var result = 0
+    try {
+      result = todoService.insertTodosFailed(todoRequests)
+    } catch (e: Exception) {
+      e.printStackTrace()
+    }
+
+    // Then
+    assertEquals(0, result)
   }
 }
