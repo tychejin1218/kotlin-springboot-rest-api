@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver
+import org.springframework.jdbc.datasource.DataSourceTransactionManager
 import javax.sql.DataSource
+
 
 @ComponentScan(basePackages = ["com.example.springbootrestapi.service"])
 @MapperScan(
@@ -49,5 +51,10 @@ class DataSourceConfiguration {
     sqlSessionFactory: SqlSessionFactory
   ): SqlSessionTemplate {
     return SqlSessionTemplate(sqlSessionFactory)
+  }
+
+  @Bean
+  fun transactionManager(): DataSourceTransactionManager {
+    return DataSourceTransactionManager(dataSource())
   }
 }

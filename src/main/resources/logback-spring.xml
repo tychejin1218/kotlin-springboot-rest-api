@@ -49,11 +49,17 @@
     <property name="LOG_LEVEL_root" value="DEBUG"/>
     <property name="LOG_LEVEL_com.example.springbootrestapi" value="DEBUG"/>
     <property name="LOG_LEVEL_com.zaxxer.hikari" value="DEBUG"/>
+    <property name="LOG_LEVEL_jdbc" value="WARN"/>
+    <property name="LOG_LEVEL_jdbc.sqltiming" value="INFO"/>
+    <property name="LOG_LEVEL_jdbc.resultsettable" value="INFO"/>
   </springProfile>
   <springProfile name="logging-level-dev">
     <property name="LOG_LEVEL_root" value="INFO"/>
     <property name="LOG_LEVEL_com.example.springbootrestapi" value="INFO"/>
     <property name="LOG_LEVEL_com.zaxxer.hikari" value="INFO"/>
+    <property name="LOG_LEVEL_com.jdbc" value="WARN"/>
+    <property name="LOG_LEVEL_com.jdbc.sqltiming" value="INFO"/>
+    <property name="LOG_LEVEL_com.jdbc.resultsettable" value="WARN"/>
   </springProfile>
 
   <!-- com.example.springbootrestapi -->
@@ -65,6 +71,37 @@
   <!-- hikari -->
   <logger name="com.zaxxer.hikari"
     level="${LOG_LEVEL_com.zaxxer.hikari}"
+    additivity="false">
+    <appender-ref ref="PROFILE-APPENDER"/>
+  </logger>
+  <!-- jdbc -->
+  <logger name="jdbc.sqlonly"
+    level="${LOG_LEVEL_jdbc}"
+    additivity="false">
+    <appender-ref ref="PROFILE-APPENDER"/>
+  </logger>
+  <logger name="jdbc.audit"
+    level="${LOG_LEVEL_jdbc}"
+    additivity="false">
+    <appender-ref ref="PROFILE-APPENDER"/>
+  </logger>
+  <logger name="jdbc.resultset"
+    level="${LOG_LEVEL_jdbc}"
+    additivity="false">
+    <appender-ref ref="PROFILE-APPENDER"/>
+  </logger>
+  <logger name="jdbc.connection"
+    level="${LOG_LEVEL_jdbc}"
+    additivity="false">
+    <appender-ref ref="PROFILE-APPENDER"/>
+  </logger>
+  <logger name="jdbc.sqltiming"
+    level="${LOG_LEVEL_jdbc.sqltiming}"
+    additivity="false">
+    <appender-ref ref="PROFILE-APPENDER"/>
+  </logger>
+  <logger name="jdbc.resultsettable"
+    level="${LOG_LEVEL_jdbc.resultsettable}"
     additivity="false">
     <appender-ref ref="PROFILE-APPENDER"/>
   </logger>
